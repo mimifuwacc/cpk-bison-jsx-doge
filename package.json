@@ -1,0 +1,38 @@
+{
+  "name": "bison-jsx-parser",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:native": "cmake -S . -B build -G Ninja && cmake --build build",
+    "format:cxx": "clang-format -i packages/jsx-parser-native/include/jsx/ast.hpp packages/jsx-parser-native/src/ast.cpp packages/jsx-parser-native/src/driver.cpp packages/jsx-parser-native/src/driver.hpp packages/jsx-parser-native/src/lexer.cpp packages/jsx-parser-native/src/lexer.hpp packages/jsx-parser-native/src/main.cpp packages/jsx-parser-native/src/node_addon.cpp packages/jsx-parser-native/tests/parser_test.cpp",
+    "check:format:cxx": "clang-format --dry-run --Werror packages/jsx-parser-native/include/jsx/ast.hpp packages/jsx-parser-native/src/ast.cpp packages/jsx-parser-native/src/driver.cpp packages/jsx-parser-native/src/driver.hpp packages/jsx-parser-native/src/lexer.cpp packages/jsx-parser-native/src/lexer.hpp packages/jsx-parser-native/src/main.cpp packages/jsx-parser-native/src/node_addon.cpp packages/jsx-parser-native/tests/parser_test.cpp",
+    "format:md": "vp fmt README.md docs packages/babel-parser-bison/README.md packages/jsx-parser-native/README.md --write",
+    "check:format:md": "vp fmt README.md docs packages/babel-parser-bison/README.md packages/jsx-parser-native/README.md --check",
+    "docs:preview": "vp run --filter ./docs preview",
+    "docs:build": "vp run --filter ./docs build",
+    "build:babel-fork": "node packages/babel-parser-bison/scripts/build-fork.ts",
+    "compile": "node packages/babel-parser-bison/scripts/build-fork.ts && node packages/babel-parser-bison/src/compile.ts",
+    "test:integration": "node packages/babel-parser-bison/scripts/build-fork.ts && node --test packages/babel-parser-bison/tests/integration.test.ts",
+    "build:doge": "node packages/babel-parser-bison/scripts/build-fork.ts && node examples/doge/scripts/build.ts",
+    "doge": "node scripts/serve.ts examples/doge/dist",
+    "test": "ctest --test-dir build --output-on-failure",
+    "dev": "vp run build:native && vp run build:doge && node scripts/serve.ts examples/doge/dist"
+  },
+  "dependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/parser": "^8.0.4",
+    "@babel/plugin-transform-react-jsx": "^8.0.1",
+    "esbuild": "^0.28.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2",
+    "vite-plus": "^0.2.8"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "packageManager": "pnpm@11.20.0"
+}

@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "VoidZero.vite-plus-extension-pack",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "ms-vscode.cmake-tools",
+    "mkhl.direnv"
+  ]
+}
